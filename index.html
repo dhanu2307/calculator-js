@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- google optimize link -->
     <script src="https://www.googleoptimize.com/optimize.js?id=OPT-K5822CM"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Calculator using JS</title>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HCFPEL8Q0Y"></script>
     <script>
@@ -79,9 +82,9 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             transition: 0.5s;
         }
-        .an {
-/*             animation: textAnimate .5s linear infinite; */
-        }
+        /* .an {
+/*             animation: textAnimate .5s linear infinite; 
+        } */
         @keyframes textAnimate {
             0%, 100% {
                 /* transform: skew(0deg); */
@@ -151,5 +154,43 @@
             <span class="num equal" onclick="document.calc.txt.value = eval(calc.txt.value)"><span class="an">=</span></span>          
         </form>
     </div>
+
+    <script>
+        const setcookie = (name, value, exdays) => {
+            constd = newDate();
+            d.setTime(d.getTime() + (60 * 1000));
+            letexpires = "expires" + d.toUTCString();
+            document.cookie = name + "=" + (value || "") + ";" + expires + "; path=/";
+        }
+        const getCookie = (cname) => {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i<ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == "") {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            } return"";
+        }
+        const checkCookie = () => {
+            console.log("hey");
+            let user = getCookie("username");
+            if (user != "") {
+                alert("Welcome Again " + user);
+            }
+            else {
+                user = prompt("Please Enter Your Name: ");
+                if (user != ""&&user != null) {
+                    setcookie("username", user, 30);
+                }
+            }
+        }
+        window.onload = checkCookie();
+    </script>
+
 </body>
 </html>

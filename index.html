@@ -157,12 +157,14 @@
 
     <script>
         const setcookie = (name, value, exdays) => {
-            constd = newDate();
+            console.log("setting cookie");
+            const d = new Date();
             d.setTime(d.getTime() + (60 * 1000));
-            letexpires = "expires" + d.toUTCString();
+            let expires = "expires" + d.toUTCString();
             document.cookie = name + "=" + (value || "") + ";" + expires + "; path=/";
         }
         const getCookie = (cname) => {
+            console.log("gettting cookie");
             let name = cname + "=";
             let decodedCookie = decodeURIComponent(document.cookie);
             let ca = decodedCookie.split(';');
@@ -174,17 +176,18 @@
                 if (c.indexOf(name) == 0) {
                     return c.substring(name.length, c.length);
                 }
-            } return"";
+            } return "";
         }
         const checkCookie = () => {
-            console.log("hey");
+            console.log("checking cookie");
             let user = getCookie("username");
-            if (user != "") {
+            console.log(user);
+            if (user !== "") {
                 alert("Welcome Again " + user);
             }
             else {
                 user = prompt("Please Enter Your Name: ");
-                if (user != ""&&user != null) {
+                if (user != "" && user != null) {
                     setcookie("username", user, 30);
                 }
             }
